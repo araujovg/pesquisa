@@ -1,5 +1,6 @@
 package br.com.gva.pesquisa.servico.impl;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import br.com.gva.pesquisa.dominio.dto.UsuarioDto;
@@ -25,10 +26,11 @@ public class UsuarioServicoImpl implements UsuarioServico{
 
     @Override
     public UsuarioDto salvar(Usuario usuario) {
-        usuario = getUsuarioRepositorio().save(usuario);
+        
+        Usuario usuarioDoBanco = getUsuarioRepositorio().save(usuario);
         UsuarioDto usuarioDto = UsuarioDto.builder()
-                                    .id(usuario.getId())
-                                    .nome(usuario.getNome())
+                                    .id(usuarioDoBanco.getId())
+                                    .nome(usuarioDoBanco.getNome())
                                     .build();
         return usuarioDto;
     }
