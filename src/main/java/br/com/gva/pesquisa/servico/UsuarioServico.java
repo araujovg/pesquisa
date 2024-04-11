@@ -1,5 +1,6 @@
 package br.com.gva.pesquisa.servico;
 
+import br.com.gva.pesquisa.dominio.dto.UsuarioCadastrarDto;
 import br.com.gva.pesquisa.dominio.dto.UsuarioDto;
 import br.com.gva.pesquisa.dominio.modelo.Usuario;
 
@@ -7,12 +8,12 @@ import br.com.gva.pesquisa.dominio.modelo.Usuario;
 //Pense na interface como um CONTRATO que define OBRIGAÇÕES que quem o assinar deverá cumprir.
 public interface UsuarioServico {
 
-    UsuarioDto salvar(Usuario usuario);
+    UsuarioDto salvar(UsuarioCadastrarDto dto);
 
-    Usuario atualizar(Usuario usuario);
+    UsuarioDto atualizar(UsuarioCadastrarDto dto);
 
     void deletar(Long id);
 
-    Usuario procurarPeloId(Long id);
+    UsuarioDto procurarPeloId(Long id);
 
 }

@@ -5,6 +5,6 @@ import lombok.Data;
 @Data
 public class UsuarioCadastrarDto {
     private Long id;
-    private String nome;
+    private String nome; 
     private String senha;
 }

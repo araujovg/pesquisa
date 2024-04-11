@@ -41,7 +41,7 @@ public class PesquisaApplication implements CommandLineRunner{
 							.build();
 		
 						 log.info("Usuario criado: " + getUsuarioRepositorio().save(usuario).toString());
-						 log.info("Usuario criado pelo serviço " + getUsuarioServico().salvar(usuario).toString());
+						 //log.info("Usuario criado pelo serviço " + getUsuarioServico().salvar(usuario).toString());
 	}
 
 

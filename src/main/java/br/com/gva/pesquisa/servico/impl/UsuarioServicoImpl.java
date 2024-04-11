@@ -3,6 +3,7 @@ package br.com.gva.pesquisa.servico.impl;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import br.com.gva.pesquisa.dominio.dto.UsuarioCadastrarDto;
 import br.com.gva.pesquisa.dominio.dto.UsuarioDto;
 import br.com.gva.pesquisa.dominio.modelo.Usuario;
 import br.com.gva.pesquisa.repositorio.UsuarioRepositorio;
@@ -25,18 +26,16 @@ public class UsuarioServicoImpl implements UsuarioServico{
     }
 
     @Override
-    public UsuarioDto salvar(Usuario usuario) {
+    public UsuarioDto salvar(UsuarioCadastrarDto dto) {
         
-        Usuario usuarioDoBanco = getUsuarioRepositorio().save(usuario);
-        UsuarioDto usuarioDto = UsuarioDto.builder()
-                                    .id(usuarioDoBanco.getId())
-                                    .nome(usuarioDoBanco.getNome())
-                                    .build();
-        return usuarioDto;
+        getUsuarioRepositorio().save(converterDtoEmEntidade(dto));
+
+        
+        return null;
     }
 
     @Override
-    public Usuario atualizar(Usuario usuario) {
+    public UsuarioDto atualizar(UsuarioCadastrarDto usuario) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'atualizar'");
     }
@@ -48,9 +47,23 @@ public class UsuarioServicoImpl implements UsuarioServico{
     }
 
     @Override
-    public Usuario procurarPeloId(Long id) {
+    public UsuarioDto procurarPeloId(Long id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'procurarPeloId'");
+    }
+
+    private Usuario converterDtoEmEntidade(UsuarioCadastrarDto dto) {
+        return Usuario.builder()
+                .nome(dto.getNome())
+                .senha(dto.getSenha())
+                .build();
+    }
+
+    private UsuarioDto converteEntidadeEmDto(Usuario usuario){
+        return UsuarioDto.builder()
+                .id(usuario.getId())
+                .nome(usuario.getNome())
+                .build();
     }
 
 }
